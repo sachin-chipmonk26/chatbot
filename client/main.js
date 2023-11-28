@@ -1,6 +1,5 @@
-import pizzaBot from './assets/pizza-bot.svg';
-import pizzaUser from './assets/pizza-user.svg';
-
+import bot from './assets/bot.svg';
+import user from './assets/user.svg';
 
 const form = document.querySelector('form');
 const chatContainer = document.querySelector('#chat_container');
@@ -40,14 +39,14 @@ function generateUniqueId() {
   return `${timestamp}-${randomNumberString}`;
 }
 
-function chatStripe(isAi, value, uniqueId) {
+function chatStripe (isAi, value, uniqueId) {
   return (
     `
     <div class="wrapper ${isAi && 'ai'}">
       <div class="chat">
         <div class="profile">
           <img
-            src="${isAi ? pizzaBot : pizzaUser}"
+            src="${isAi ? bot : user}"
             alt="${isAi ? 'bot' : 'user'}"
           />
         </div>
@@ -55,21 +54,20 @@ function chatStripe(isAi, value, uniqueId) {
       </div>
     </div>
     `
-  );
+  )
 }
-
 
 const handleSubmit = async (e) => {
   e.preventDefault();
 
   const data = new FormData(form);
 
-  // User's chat stripe
+  //user's chatstripe
   chatContainer.innerHTML += chatStripe(false, data.get('prompt'));
 
   form.reset();
 
-  // AI's chat stripe
+  //ai's chatstripe
   const uniqueId = generateUniqueId();
   chatContainer.innerHTML += chatStripe(true, " ", uniqueId);
 
@@ -79,9 +77,9 @@ const handleSubmit = async (e) => {
 
   loader(messageDiv);
 
-  // Fetch data from server --> bot's response (modify as needed for pizza-related logic)
+  // fetch data from server --> bot's response (after creating server logic)
 
-  const response = await fetch('http://localhost:5000/', {
+  const response = await fetch('http://localhost:5000', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -89,25 +87,25 @@ const handleSubmit = async (e) => {
     body: JSON.stringify({
       prompt: data.get('prompt')
     })
-  });
-  //clears text area for next request
+  })
+
   clearInterval(loadInterval);
   messageDiv.innerHTML = '';
 
-  if (response.ok) {
-    const responseData = await response.json();
-    const parsedData = responseData.bot.trim();
+  if(response.ok) {
+    const data = await response.json();
+    console.log("###",data)
+    const parseData = data.bot.trim();
 
-    typeText(messageDiv, parsedData);
+    typeText(messageDiv, parseData);
   } else {
     const err = await response.text();
 
-    messageDiv.innerHTML = "Something went wrong";
+    messageDiv.innerHTML = "Something went wrong"
 
     alert(err);
   }
-};
-
+}
 
 form.addEventListener('submit', handleSubmit)
 form.addEventListener('keyup', (e) => {
