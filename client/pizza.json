@@ -1,0 +1,98 @@
+[
+    {
+      "user": "Customer",
+      "message": "What pizzas do you offer?",   
+      "intent": "menu_inquiry"
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "We offer a variety of pizzas, including Margherita, Pepperoni, and Vegetarian. Would you like to place an order?"  
+    },
+    {
+      "user": "Customer",
+      "message": "I'd like to order a large pepperoni pizza with extra cheese.",  
+      "intent": "order",
+      "details": {
+        "size": "large",
+        "topping": "pepperoni",
+        "extra": ["cheese"]
+      }
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "Great choice! A large pepperoni pizza with extra cheese. Anything else you'd like to add to your order?" 
+    },
+    {
+      "user": "Customer",
+      "message": "Do you have any vegetarian pizza options?",
+      "intent": "menu_inquiry",
+      "details": {
+        "dietary_preference": "vegetarian"
+      }
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "Certainly! We have delicious Vegetarian pizzas. Would you like to try our Veggie Delight?" 
+    },
+    {
+      "user": "Customer",
+      "message": "How much is a medium Margherita pizza?", 
+      "intent": "price_inquiry",
+      "details": {
+        "size": "medium",
+        "pizza_type": "Margherita"
+      }
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "The medium Margherita pizza is $12.99. Would you like to add it to your order?"
+    },
+    {
+      "user": "Customer",
+      "message": "I want to order a pizza for delivery. What's your address?",  
+      "intent": "delivery_info"
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "We deliver to your address. Please provide your full address, including city and ZIP code." 
+    },
+    {
+      "user": "Customer",
+      "message": "Cancel my order, please.",  
+      "intent": "order_cancellation"
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "I'm sorry to hear that. Could you please provide the order number so I can assist you with the cancellation?" 
+    },
+    {
+      "user": "Customer",
+      "message": "When will my pizza arrive?",  
+      "intent": "delivery_status_inquiry"
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "Delivery times vary based on your location. Can you provide your order number for an accurate estimate?"
+    },
+    {
+      "user": "Customer",
+      "message": "Thank you!",  
+      "intent": "gratitude"
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "You're welcome! If you have any more questions or need further assistance, feel free to ask." 
+    },
+    {
+      "user": "Customer",
+      "message": "I have a coupon code. Can I use it for this order?", 
+      "intent": "coupon_inquiry",
+      "details": {
+        "coupon_code": "DISCOUNT25"
+      }
+    },
+    {
+      "bot": "PizzaBot",
+      "message": "Absolutely! Please enter the coupon code 'DISCOUNT25' during checkout to apply the discount."
+    }
+  ]
